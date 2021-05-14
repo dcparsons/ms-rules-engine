@@ -1,0 +1,68 @@
+// generated from https://github.com/microsoft/RulesEngine/blob/main/schema/workflowRules-schema.json 
+{
+  "WorkFlowName": "cupidatat in occaecat aliqua nisi",
+  "Rules": [
+    {
+      "RuleName": "officia ut ut sed",
+      "Expression": "Lorem eu commodo amet",
+      "RuleExpressionType": "LambdaExpression",
+      "SuccessEvent": "aute",
+      "ErrorMessage": "non occaecat",
+      "ErrorType": "Warning"
+    },
+    {
+      "RuleName": "quis amet",
+      "Operator": "AndAlso",
+      "Rules": [
+        {
+          "RuleName": "ea",
+          "Expression": "veniam",
+          "RuleExpressionType": "LambdaExpression",
+          "SuccessEvent": "ipsum tempor qui culpa",
+          "ErrorType": "Warning",
+          "ErrorMessage": "commodo"
+        }
+      ],
+      "ErrorType": "Warning",
+      "ErrorMessage": "dolore ea Lorem",
+      "SuccessEvent": "aliqua id et"
+    },
+    {
+      "RuleName": "dolore esse amet",
+      "Operator": "AndAlso",
+      "Rules": [
+        {
+          "RuleName": "adipisicing",
+          "Expression": "dolor do et",
+          "RuleExpressionType": "LambdaExpression",
+          "ErrorMessage": "minim dolore",
+          "SuccessEvent": "non ad qui irure et",
+          "ErrorType": "Error"
+        },
+        {
+          "RuleName": "dolor do dolore minim culpa",
+          "Expression": "consequat",
+          "RuleExpressionType": "LambdaExpression"
+        },
+        {
+          "RuleName": "eiusmod commodo do",
+          "Expression": "deserunt",
+          "RuleExpressionType": "LambdaExpression",
+          "ErrorType": "Error",
+          "SuccessEvent": "eu nulla",
+          "ErrorMessage": "esse deserunt ea incididunt"
+        }
+      ],
+      "SuccessEvent": "dolor",
+      "ErrorType": "Error",
+      "ErrorMessage": "incididunt"
+    },
+    {
+      "RuleName": "aute est elit magna ut",
+      "Operator": "And",
+      "Rules": [],
+      "ErrorMessage": "occaecat commodo incididunt sint",
+      "ErrorType": "Warning"
+    }
+  ]
+}
