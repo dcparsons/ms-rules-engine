@@ -1,5 +1,6 @@
 ﻿using ms_rules_engine.crm;
 using ms_rules_engine.service;
+using RulesEngine.Models;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -10,14 +11,24 @@ namespace ms_rules_engine
     {
         static void Main(string[] args)
         {
-            var lst = GenerateMessage();
 
-            Parallel.ForEach(lst, msg =>
+
+            var lst = GenerateMessage();
+            var svc = new RuleService();
+
+            foreach(var x in lst)
             {
-                var svc = new RuleService();
-                svc.EvaluateRule(msg);
-            });
+                svc.EvaluateRule(x);
+                break;
+            }
             
+
+            //Parallel.ForEach(lst, msg =>
+            //{
+            //    var svc = new RuleService();
+            //    svc.EvaluateRule(msg);
+            //});
+
         }
 
         private static IEnumerable<IMessage<ICRMMessage>> GenerateMessage()

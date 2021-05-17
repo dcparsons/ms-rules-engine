@@ -39,67 +39,74 @@ namespace ms_rules_engine.data
                                 {
                                     new Rule()
                                     {
-                                        RuleName="LateNightEmail",
-                                        ErrorMessage = "Message does not qualify for LateNightEmail",
-                                        RuleExpressionType = RuleExpressionType.LambdaExpression,
-                                        LocalParams = new[]
+                                        RuleName = "Immediate",
+                                        Operator = "Or",
+                                        Rules = new List<Rule>()
                                         {
-                                            new ScopedParam
+                                          new Rule()
+                                          {
+                                            RuleName="LateNightEmail",
+                                            ErrorMessage = "Message does not qualify for LateNightEmail",
+                                            RuleExpressionType = RuleExpressionType.LambdaExpression,
+                                            LocalParams = new[]
                                             {
-                                                Name = "date1",
-                                                Expression = @"DateTime.Parse(""21:00:00"")"
+                                                new ScopedParam
+                                                {
+                                                    Name = "date1",
+                                                    Expression = @"DateTime.Parse(""21:00:00"")"
+                                                },
+                                                new ScopedParam
+                                                {
+                                                    Name = "date2",
+                                                    Expression = @"DateTime.Parse(""07:59:59"")"
+                                                },
                                             },
-                                            new ScopedParam
-                                            {
-                                                Name = "date2",
-                                                Expression = @"DateTime.Parse(""08:59:59"")"
-                                            },
-                                        },
-                                        Expression = @"input1.InsertDate.TimeOfDay.Ticks >= date1.TimeOfDay.Ticks && input1.InsertDate.TimeOfDay.Ticks <= date2.TimeOfDay.Ticks"
-
-                                    },
-                                    new Rule()
-                                    {
-                                        RuleName="GenericEmail",
-                                        ErrorMessage = "Message does not qualify for GenericEmail",
-                                        RuleExpressionType = RuleExpressionType.LambdaExpression,
-                                        LocalParams = new[]
+                                            Expression = @"input1.InsertDate.TimeOfDay.Ticks >= date1.TimeOfDay.Ticks || input1.InsertDate.TimeOfDay.Ticks <= date2.TimeOfDay.Ticks"
+                                          },
+                                          new Rule()
                                         {
-                                            new ScopedParam
+                                            RuleName="AutoTrader",
+                                            ErrorMessage = "Message does not qualify for AutoTrader",
+                                            RuleExpressionType = RuleExpressionType.LambdaExpression,
+                                            LocalParams = new[]
                                             {
-                                                Name = "date1",
-                                                Expression = @"DateTime.Parse(""09:00:00"")"
+                                                new ScopedParam
+                                                {
+                                                    Name = "date1",
+                                                    Expression = @"DateTime.Parse(""08:00:00"")"
+                                                },
+                                                new ScopedParam
+                                                {
+                                                    Name = "date2",
+                                                    Expression = @"DateTime.Parse(""20:59:59"")"
+                                                },
                                             },
-                                            new ScopedParam
-                                            {
-                                                Name = "date2",
-                                                Expression = @"DateTime.Parse(""20:59:59"")"
-                                            },
-                                        },
-                                        Expression = @"input1.InsertDate.TimeOfDay.Ticks >= date1.TimeOfDay.Ticks && input1.InsertDate.TimeOfDay.Ticks <= date2.TimeOfDay.Ticks"
+                                            Expression = @"input2.LeadSource == ""AutoTrader"" && input3.Vehicle.Type == ""Used"" && (input1.InsertDate.TimeOfDay.Ticks >= date1.TimeOfDay.Ticks || input1.InsertDate.TimeOfDay.Ticks <= date2.TimeOfDay.Ticks)"
 
-                                    },
-                                    new Rule()
-                                    {
-                                        RuleName="AutoTrader",
-                                        ErrorMessage = "Message does not qualify for AutoTrader",
-                                        RuleExpressionType = RuleExpressionType.LambdaExpression,
-                                        LocalParams = new[]
+                                        },
+                                          new Rule()
                                         {
-                                            new ScopedParam
+                                            RuleName="GenericEmail",
+                                            ErrorMessage = "Message does not qualify for GenericEmail",
+                                            RuleExpressionType = RuleExpressionType.LambdaExpression,
+                                            LocalParams = new[]
                                             {
-                                                Name = "date1",
-                                                Expression = @"DateTime.Parse(""09:00:00"")"
+                                                new ScopedParam
+                                                {
+                                                    Name = "date1",
+                                                    Expression = @"DateTime.Parse(""08:00:00"")"
+                                                },
+                                                new ScopedParam
+                                                {
+                                                    Name = "date2",
+                                                    Expression = @"DateTime.Parse(""20:59:59"")"
+                                                },
                                             },
-                                            new ScopedParam
-                                            {
-                                                Name = "date2",
-                                                Expression = @"DateTime.Parse(""20:59:59"")"
-                                            },
-                                        },
-                                        Expression = @"input2.LeadSource == ""AutoTrader"" && input3.Vehicle.Type == ""Used"" && input1.InsertDate.TimeOfDay.Ticks >= date1.TimeOfDay.Ticks && input1.InsertDate.TimeOfDay.Ticks <= date2.TimeOfDay.Ticks"
+                                            Expression = @"input1.InsertDate.TimeOfDay.Ticks >= date1.TimeOfDay.Ticks || input1.InsertDate.TimeOfDay.Ticks <= date2.TimeOfDay.Ticks"
 
-                                    },
+                                        },
+                                        }
+                                    }
 
                                 }
                             }
